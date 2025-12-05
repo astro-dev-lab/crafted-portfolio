@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Badge } from '@/components/ui/Badge';
 import { Progress } from '@/components/ui/Progress';
 import { Separator } from '@/components/ui/Separator';
 
@@ -44,6 +44,7 @@ export default function CheckoutPage() {
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [orderNumber, setOrderNumber] = useState('');
 
   const steps: CheckoutStep[] = [
     { id: 1, title: 'Shipping Information', completed: currentStep > 1 },
@@ -52,10 +53,10 @@ export default function CheckoutPage() {
   ];
 
   const orderSummary: OrderSummary = {
-    subtotal: 798.00,
+    subtotal: 798.0,
     tax: 63.84,
     shipping: 0,
-    discount: 79.80,
+    discount: 79.8,
     total: 782.04,
   };
 
@@ -80,6 +81,7 @@ export default function CheckoutPage() {
     setIsProcessing(true);
     // Simulate payment processing
     await new Promise(resolve => setTimeout(resolve, 3000));
+    setOrderNumber(Date.now().toString().slice(-6));
     setOrderComplete(true);
     setIsProcessing(false);
   };
@@ -88,26 +90,26 @@ export default function CheckoutPage() {
 
   if (orderComplete) {
     return (
-      <div className="pt-20">
+      <div className='pt-20'>
         <Container>
-          <div className="max-w-2xl mx-auto text-center">
+          <div className='max-w-2xl mx-auto text-center'>
             <Card>
-              <CardContent className="p-12">
-                <div className="text-6xl mb-6">✅</div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">Order Complete!</h1>
-                <p className="text-lg text-gray-600 mb-6">
+              <CardContent className='p-12'>
+                <div className='text-6xl mb-6'>✅</div>
+                <h1 className='text-3xl font-bold text-gray-900 mb-4'>Order Complete!</h1>
+                <p className='text-lg text-gray-600 mb-6'>
                   Thank you for your purchase. Your order has been successfully processed.
                 </p>
-                <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                  <p className="text-sm text-gray-600 mb-2">Order Number</p>
-                  <p className="text-lg font-mono font-bold">#CP-{Date.now().toString().slice(-6)}</p>
+                <div className='bg-gray-50 rounded-lg p-4 mb-6'>
+                  <p className='text-sm text-gray-600 mb-2'>Order Number</p>
+                  <p className='text-lg font-mono font-bold'>#CP-{orderNumber}</p>
                 </div>
-                <div className="space-y-3">
-                  <Button asChild className="w-full">
-                    <a href="/">Return to Homepage</a>
+                <div className='space-y-3'>
+                  <Button asChild className='w-full'>
+                    <Link href='/'>Return to Homepage</Link>
                   </Button>
-                  <Button asChild variant="outline" className="w-full">
-                    <a href="/shop">Continue Shopping</a>
+                  <Button asChild variant='outline' className='w-full'>
+                    <Link href='/shop'>Continue Shopping</Link>
                   </Button>
                 </div>
               </CardContent>
@@ -119,27 +121,35 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="pt-20">
+    <div className='pt-20'>
       <Container>
-        <div className="max-w-4xl mx-auto">
+        <div className='max-w-4xl mx-auto'>
           {/* Progress Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Checkout</h1>
-            <div className="space-y-4">
-              <Progress value={progressPercentage} className="h-2" />
-              <div className="flex justify-between">
-                {steps.map((step, index) => (
-                  <div key={step.id} className="flex items-center">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                      step.completed ? 'bg-green-500 text-white' :
-                      currentStep === step.id ? 'bg-blue-500 text-white' :
-                      'bg-gray-200 text-gray-600'
-                    }`}>
+          <div className='mb-8'>
+            <h1 className='text-3xl font-bold text-gray-900 mb-4'>Checkout</h1>
+            <div className='space-y-4'>
+              <Progress value={progressPercentage} className='h-2' />
+              <div className='flex justify-between'>
+                {steps.map((step, _index) => (
+                  <div key={step.id} className='flex items-center'>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                        step.completed
+                          ? 'bg-green-500 text-white'
+                          : currentStep === step.id
+                            ? 'bg-blue-500 text-white'
+                            : 'bg-gray-200 text-gray-600'
+                      }`}
+                    >
                       {step.completed ? '✓' : step.id}
                     </div>
-                    <span className={`ml-2 text-sm font-medium ${
-                      step.completed || currentStep === step.id ? 'text-gray-900' : 'text-gray-500'
-                    }`}>
+                    <span
+                      className={`ml-2 text-sm font-medium ${
+                        step.completed || currentStep === step.id
+                          ? 'text-gray-900'
+                          : 'text-gray-500'
+                      }`}
+                    >
                       {step.title}
                     </span>
                   </div>
@@ -148,75 +158,89 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className='grid lg:grid-cols-3 gap-8'>
             {/* Form Column */}
-            <div className="lg:col-span-2">
+            <div className='lg:col-span-2'>
               {currentStep === 1 && (
                 <Card>
                   <CardHeader>
                     <CardTitle>Shipping Information</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                  <CardContent className='space-y-4'>
+                    <div className='grid grid-cols-2 gap-4'>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">First Name</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                          First Name
+                        </label>
                         <Input
                           value={formData.firstName}
-                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          onChange={e => setFormData({ ...formData, firstName: e.target.value })}
                         />
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">Last Name</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                          Last Name
+                        </label>
                         <Input
                           value={formData.lastName}
-                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                          onChange={e => setFormData({ ...formData, lastName: e.target.value })}
                         />
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className='grid grid-cols-2 gap-4'>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">Email</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                          Email
+                        </label>
                         <Input
-                          type="email"
+                          type='email'
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={e => setFormData({ ...formData, email: e.target.value })}
                         />
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">Phone</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                          Phone
+                        </label>
                         <Input
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={e => setFormData({ ...formData, phone: e.target.value })}
                         />
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-700 mb-2 block">Address</label>
+                      <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                        Address
+                      </label>
                       <Input
                         value={formData.address}
-                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        onChange={e => setFormData({ ...formData, address: e.target.value })}
                       />
                     </div>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className='grid grid-cols-3 gap-4'>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">City</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>City</label>
                         <Input
                           value={formData.city}
-                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                          onChange={e => setFormData({ ...formData, city: e.target.value })}
                         />
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">State</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                          State
+                        </label>
                         <Input
                           value={formData.state}
-                          onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                          onChange={e => setFormData({ ...formData, state: e.target.value })}
                         />
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">ZIP Code</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                          ZIP Code
+                        </label>
                         <Input
                           value={formData.zipCode}
-                          onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
+                          onChange={e => setFormData({ ...formData, zipCode: e.target.value })}
                         />
                       </div>
                     </div>
@@ -229,42 +253,48 @@ export default function CheckoutPage() {
                   <CardHeader>
                     <CardTitle>Payment Information</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className='space-y-4'>
                     <div>
-                      <label className="text-sm font-medium text-gray-700 mb-2 block">Card Number</label>
+                      <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                        Card Number
+                      </label>
                       <Input
                         value={formData.cardNumber}
-                        onChange={(e) => setFormData({ ...formData, cardNumber: e.target.value })}
-                        placeholder="1234 5678 9012 3456"
+                        onChange={e => setFormData({ ...formData, cardNumber: e.target.value })}
+                        placeholder='1234 5678 9012 3456'
                       />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className='grid grid-cols-2 gap-4'>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">Expiry Date</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                          Expiry Date
+                        </label>
                         <Input
                           value={formData.expiryDate}
-                          onChange={(e) => setFormData({ ...formData, expiryDate: e.target.value })}
-                          placeholder="MM/YY"
+                          onChange={e => setFormData({ ...formData, expiryDate: e.target.value })}
+                          placeholder='MM/YY'
                         />
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">CVV</label>
+                        <label className='text-sm font-medium text-gray-700 mb-2 block'>CVV</label>
                         <Input
                           value={formData.cvv}
-                          onChange={(e) => setFormData({ ...formData, cvv: e.target.value })}
-                          placeholder="123"
+                          onChange={e => setFormData({ ...formData, cvv: e.target.value })}
+                          placeholder='123'
                         />
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-700 mb-2 block">Name on Card</label>
+                      <label className='text-sm font-medium text-gray-700 mb-2 block'>
+                        Name on Card
+                      </label>
                       <Input
                         value={formData.nameOnCard}
-                        onChange={(e) => setFormData({ ...formData, nameOnCard: e.target.value })}
+                        onChange={e => setFormData({ ...formData, nameOnCard: e.target.value })}
                       />
                     </div>
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <p className="text-sm text-blue-800">
+                    <div className='bg-blue-50 border border-blue-200 rounded-lg p-4'>
+                      <p className='text-sm text-blue-800'>
                         🔒 This is a demo checkout. No real payment will be processed.
                       </p>
                     </div>
@@ -277,19 +307,25 @@ export default function CheckoutPage() {
                   <CardHeader>
                     <CardTitle>Review Your Order</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                  <CardContent className='space-y-6'>
                     <div>
-                      <h3 className="font-medium text-gray-900 mb-3">Shipping Address</h3>
-                      <div className="bg-gray-50 rounded-lg p-4 text-sm">
-                        <p>{formData.firstName} {formData.lastName}</p>
+                      <h3 className='font-medium text-gray-900 mb-3'>Shipping Address</h3>
+                      <div className='bg-gray-50 rounded-lg p-4 text-sm'>
+                        <p>
+                          {formData.firstName} {formData.lastName}
+                        </p>
                         <p>{formData.address}</p>
-                        <p>{formData.city}, {formData.state} {formData.zipCode}</p>
-                        <p>{formData.email} • {formData.phone}</p>
+                        <p>
+                          {formData.city}, {formData.state} {formData.zipCode}
+                        </p>
+                        <p>
+                          {formData.email} • {formData.phone}
+                        </p>
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-900 mb-3">Payment Method</h3>
-                      <div className="bg-gray-50 rounded-lg p-4 text-sm">
+                      <h3 className='font-medium text-gray-900 mb-3'>Payment Method</h3>
+                      <div className='bg-gray-50 rounded-lg p-4 text-sm'>
                         <p>Card ending in {formData.cardNumber.slice(-4)}</p>
                         <p>{formData.nameOnCard}</p>
                       </div>
@@ -297,71 +333,69 @@ export default function CheckoutPage() {
                     <Button
                       onClick={processOrder}
                       disabled={isProcessing}
-                      className="w-full"
-                      size="lg"
+                      className='w-full'
+                      size='lg'
                     >
-                      {isProcessing ? 'Processing Order...' : `Complete Order - $${orderSummary.total.toFixed(2)}`}
+                      {isProcessing
+                        ? 'Processing Order...'
+                        : `Complete Order - $${orderSummary.total.toFixed(2)}`}
                     </Button>
                   </CardContent>
                 </Card>
               )}
 
               {/* Navigation */}
-              <div className="flex justify-between mt-6">
-                <Button
-                  variant="outline"
-                  onClick={handlePreviousStep}
-                  disabled={currentStep === 1}
-                >
+              <div className='flex justify-between mt-6'>
+                <Button variant='outline' onClick={handlePreviousStep} disabled={currentStep === 1}>
                   Previous
                 </Button>
-                {currentStep < 3 && (
-                  <Button onClick={handleNextStep}>
-                    Continue
-                  </Button>
-                )}
+                {currentStep < 3 && <Button onClick={handleNextStep}>Continue</Button>}
               </div>
             </div>
 
             {/* Order Summary */}
             <div>
-              <Card className="sticky top-24">
+              <Card className='sticky top-24'>
                 <CardHeader>
                   <CardTitle>Order Summary</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className='space-y-4'>
                   {cartItems.map(item => (
-                    <div key={item.id} className="flex items-center space-x-3">
-                      <div className="text-2xl">{item.image}</div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">{item.name}</p>
-                        <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                    <div key={item.id} className='flex items-center space-x-3'>
+                      <div className='text-2xl'>{item.image}</div>
+                      <div className='flex-1'>
+                        <p className='text-sm font-medium text-gray-900'>{item.name}</p>
+                        <p className='text-sm text-gray-600'>Qty: {item.quantity}</p>
                       </div>
-                      <span className="text-sm font-medium">${item.price}</span>
+                      <span className='text-sm font-medium'>${item.price}</span>
                     </div>
                   ))}
-                  
+
                   <Separator />
-                  
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
+
+                  <div className='space-y-2 text-sm'>
+                    <div className='flex justify-between'>
                       <span>Subtotal</span>
                       <span>${orderSummary.subtotal.toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className='flex justify-between'>
                       <span>Tax</span>
                       <span>${orderSummary.tax.toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className='flex justify-between'>
                       <span>Shipping</span>
-                      <span>{orderSummary.shipping === 0 ? 'Free' : `$${orderSummary.shipping.toFixed(2)}`}</span>
+                      <span>
+                        {orderSummary.shipping === 0
+                          ? 'Free'
+                          : `$${orderSummary.shipping.toFixed(2)}`}
+                      </span>
                     </div>
-                    <div className="flex justify-between text-green-600">
+                    <div className='flex justify-between text-green-600'>
                       <span>Discount (DEMO10)</span>
                       <span>-${orderSummary.discount.toFixed(2)}</span>
                     </div>
                     <Separator />
-                    <div className="flex justify-between text-lg font-bold">
+                    <div className='flex justify-between text-lg font-bold'>
                       <span>Total</span>
                       <span>${orderSummary.total.toFixed(2)}</span>
                     </div>

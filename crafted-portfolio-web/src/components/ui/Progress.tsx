@@ -10,11 +10,15 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   ({ className, value = 0, max = 100, ...props }, ref) => (
     <div
       ref={ref}
+      role='progressbar'
+      aria-valuemin={0}
+      aria-valuemax={max}
+      aria-valuenow={value}
       className={cn('relative h-4 w-full overflow-hidden rounded-full bg-gray-100', className)}
       {...props}
     >
       <div
-        className="h-full w-full flex-1 bg-gray-900 transition-all"
+        className='h-full w-full flex-1 bg-gray-900 transition-all'
         style={{ transform: `translateX(-${100 - (value / max) * 100}%)` }}
       />
     </div>

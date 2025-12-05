@@ -1,7 +1,7 @@
-"use client";
-import { createContext, useContext, useMemo, useState } from "react";
+'use client';
+import { createContext, useContext, useMemo, useState } from 'react';
 
-type Role = "guest" | "admin" | "support" | "patient" | "provider";
+type Role = 'guest' | 'admin' | 'support' | 'patient' | 'provider';
 type User = { email: string; role: Role } | null;
 
 type AuthContextValue = {
@@ -14,7 +14,7 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function useAuth() {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
   return ctx;
 }
 

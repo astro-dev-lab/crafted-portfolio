@@ -24,9 +24,7 @@ const Grid = forwardRef<HTMLDivElement, GridProps>(
       8: 'gap-8',
     }[gap];
 
-    return (
-      <div ref={ref} className={cn('grid', colsClass, gapClass, className)} {...props} />
-    );
+    return <div ref={ref} className={cn('grid', colsClass, gapClass, className)} {...props} />;
   }
 );
 Grid.displayName = 'Grid';

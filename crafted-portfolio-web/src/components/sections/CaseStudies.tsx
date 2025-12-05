@@ -9,7 +9,8 @@ export function CaseStudies() {
   const caseStudies = [
     {
       title: 'SaaS Admin Console',
-      description: 'Mock login with RBAC, customers CRUD, metrics dashboard, and notifications center.',
+      description:
+        'Mock login with RBAC, customers CRUD, metrics dashboard, and notifications center.',
       href: '/case-studies/saas',
       image: '🏢',
       tech: ['React', 'TypeScript', 'RBAC'],
@@ -58,50 +59,52 @@ export function CaseStudies() {
   ];
 
   return (
-    <Section className="bg-gray-50">
+    <Section id='case-studies' className='bg-gray-50'>
       <Container>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Interactive Case Studies</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore fully functional demos of enterprise platforms we've built. 
-            Each case study includes real interactivity and working features.
+        <div className='text-center mb-16'>
+          <h2 className='text-4xl font-bold text-gray-900 mb-4'>Interactive Case Studies</h2>
+          <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
+            Explore fully functional demos of enterprise platforms we&apos;ve built. Each case study
+            includes real interactivity and working features.
           </p>
         </div>
         <Grid cols={3} gap={8}>
-          {caseStudies.map((study) => (
-            <Card key={study.href} className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          {caseStudies.map(study => (
+            <Card
+              key={study.href}
+              className='group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1'
+            >
               <CardHeader>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="text-4xl">{study.image}</div>
-                  <Badge variant="secondary">{study.category}</Badge>
+                <div className='flex items-center justify-between mb-3'>
+                  <div className='text-4xl'>{study.image}</div>
+                  <Badge variant='secondary'>{study.category}</Badge>
                 </div>
-                <CardTitle className="text-xl group-hover:text-blue-600 transition-colors">
+                <CardTitle className='text-xl group-hover:text-blue-600 transition-colors'>
                   {study.title}
                 </CardTitle>
-                <CardDescription className="text-gray-600">
-                  {study.description}
-                </CardDescription>
+                <CardDescription className='text-gray-600'>{study.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {study.tech.map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs">
+                <div className='flex flex-wrap gap-2 mb-4'>
+                  {study.tech.map(tech => (
+                    <Badge key={tech} variant='outline' className='text-xs'>
                       {tech}
                     </Badge>
                   ))}
                 </div>
-                <Button asChild className="w-full group-hover:bg-blue-600 transition-colors">
+                <Button asChild className='w-full group-hover:bg-blue-600 transition-colors'>
                   <a href={study.href}>Try Interactive Demo</a>
                 </Button>
               </CardContent>
             </Card>
           ))}
         </Grid>
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-6">
-            Each demo includes working authentication, real-time interactions, and production-ready patterns.
+        <div className='text-center mt-12'>
+          <p className='text-gray-600 mb-6'>
+            Each demo includes working authentication, real-time interactions, and production-ready
+            patterns.
           </p>
-          <Button size="lg" variant="outline">
+          <Button size='lg' variant='outline'>
             View All Case Studies
           </Button>
         </div>

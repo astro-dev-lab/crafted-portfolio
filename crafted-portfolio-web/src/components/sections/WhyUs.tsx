@@ -35,28 +35,28 @@ export function WhyUs() {
   return (
     <Section>
       <Container>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Work With Us</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We deliver production-grade systems with the patterns and practices 
-            that enterprise teams need to succeed.
+        <div className='text-center mb-16'>
+          <h2 className='text-4xl font-bold text-gray-900 mb-4'>Why Work With Us</h2>
+          <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
+            We deliver production-grade systems with the patterns and practices that enterprise
+            teams need to succeed.
           </p>
         </div>
         <Grid cols={2} gap={8}>
-          {advantages.map((advantage) => (
-            <Card key={advantage.title} className="h-full">
+          {advantages.map(advantage => (
+            <Card key={advantage.title} className='h-full'>
               <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <Badge variant="secondary">{advantage.badge}</Badge>
+                <div className='flex items-center justify-between mb-2'>
+                  <Badge variant='secondary'>{advantage.badge}</Badge>
                 </div>
-                <CardTitle className="text-xl">{advantage.title}</CardTitle>
+                <CardTitle className='text-xl'>{advantage.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">{advantage.description}</p>
-                <ul className="space-y-2">
-                  {advantage.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-sm text-gray-600">
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2" />
+                <p className='text-gray-600 mb-4'>{advantage.description}</p>
+                <ul className='space-y-2'>
+                  {advantage.features.map(feature => (
+                    <li key={feature} className='flex items-center text-sm text-gray-600'>
+                      <div className='w-1.5 h-1.5 bg-blue-500 rounded-full mr-2' />
                       {feature}
                     </li>
                   ))}
