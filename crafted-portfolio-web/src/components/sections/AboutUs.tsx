@@ -8,10 +8,13 @@ import { Button } from '@/components/ui/Button';
 import { AngleDivider } from '@/components/ui/AngleDivider';
 import Link from 'next/link';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export function AboutUs() {
   const headlineRef = useRef(null);
+  const manifestoRef = useRef(null);
   const isHeadlineInView = useInView(headlineRef, { once: true, margin: "-100px" });
+  const isManifestoInView = useInView(manifestoRef, { once: true, margin: "-50px" });
 
   const services = [
     {
@@ -40,6 +43,9 @@ export function AboutUs() {
     'We build for the way your business actually works.',
   ];
 
+  // Word-by-word animation for manifesto lines
+  const manifestoWords = manifesto.map(line => line.split(' '));
+
   // Letter-by-letter animation for "Intentional Engineering"
   const engineeringText = "Intentional Engineering.";
   const letters = Array.from(engineeringText);
@@ -57,7 +63,7 @@ export function AboutUs() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
+      transition: { duration: 0.6, ease: 'easeOut' as const },
     },
   };
 
@@ -66,7 +72,7 @@ export function AboutUs() {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as const },
     },
   };
 
@@ -78,18 +84,57 @@ export function AboutUs() {
       transition: {
         delay: 0.8 + (i * 0.05),
         duration: 0.4,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
       },
     }),
   };
 
-  const manifestoVariants = {
-    hidden: { opacity: 0, x: -20 },
+  // Enhanced manifesto animations - choreographed precision
+  const manifestoLineVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const manifestoWordVariants = {
+    hidden: { opacity: 0, y: 20, rotateX: -90 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const slideFromRightVariants = {
+    hidden: { opacity: 0, x: 60 },
     visible: (i: number) => ({
       opacity: 1,
       x: 0,
-      transition: { delay: i * 0.2, duration: 0.5 },
+      transition: {
+        delay: i * 0.3,
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
     }),
+  };
+
+  const signatureVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: 1.2,
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
   };
 
   return (
@@ -209,6 +254,15 @@ export function AboutUs() {
                   className="group relative"
                 >
                   <Card className="h-full border-0 bg-white relative overflow-hidden p-0">
+                    {/* Swiss Precision Dots Background Pattern */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        backgroundImage: 'url(/images/who-we-are/swiss-precision-dots.svg)',
+                        backgroundSize: '200px 200px',
+                        backgroundRepeat: 'repeat',
+                      }}
+                    />
                     <div 
                       className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"
                       style={{
@@ -290,46 +344,118 @@ export function AboutUs() {
               ))}
             </motion.div>
 
-            {/* Enhanced Manifesto */}
-            <motion.div
-              variants={itemVariants}
-              className="border-t border-gray-200 pt-20"
-              style={{
-                borderImage: 'linear-gradient(90deg, rgba(59, 130, 246, 0.2), transparent) 1'
-              }}
+            {/* Enhanced Manifesto with Choreographed Precision Animation */}
+            <div 
+              ref={manifestoRef}
+              className="relative pt-20"
             >
-              <div className="max-w-3xl">
-                {manifesto.map((line, i) => (
-                  <motion.p
-                    key={i}
-                    custom={i}
+              {/* Blueprint Technical Lines Background */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-60"
+                style={{
+                  backgroundImage: 'url(/images/who-we-are/blueprint-technical-lines.svg)',
+                  backgroundSize: '100% 120px',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'top left',
+                }}
+              />
+              
+              {/* Gradient border top */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-px"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1) 50%, transparent)'
+                }}
+              />
+
+              <div className="relative flex flex-col lg:flex-row gap-16 items-start">
+                {/* Manifesto Text */}
+                <div className="flex-1 max-w-3xl">
+                  {manifestoWords.map((words, lineIndex) => (
+                    <motion.div
+                      key={lineIndex}
+                      initial="hidden"
+                      animate={isManifestoInView ? "visible" : "hidden"}
+                      variants={manifestoLineVariants}
+                      custom={lineIndex}
+                      className="mb-6 overflow-hidden"
+                      style={{ perspective: '1000px' }}
+                    >
+                      <p className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
+                        {words.map((word, wordIndex) => (
+                          <motion.span
+                            key={wordIndex}
+                            variants={manifestoWordVariants}
+                            className="inline-block mr-3"
+                            style={{
+                              textShadow: `
+                                0 2px 4px rgba(0, 0, 0, 0.1),
+                                0 8px 16px rgba(0, 0, 0, 0.05),
+                                0 16px 32px rgba(0, 0, 0, 0.03)
+                              `
+                            }}
+                          >
+                            {word}
+                          </motion.span>
+                        ))}
+                      </p>
+                    </motion.div>
+                  ))}
+                  
+                  {/* Signature line with special treatment */}
+                  <motion.div
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={manifestoVariants}
-                    className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 tracking-tight"
+                    animate={isManifestoInView ? "visible" : "hidden"}
+                    variants={signatureVariants}
+                    className="mt-12 pt-8 border-t border-gray-100"
+                  >
+                    <p className="text-xl text-gray-500 italic font-light leading-relaxed">
+                      This is who we are — and this is what it means to be{' '}
+                      <span 
+                        className="text-gray-900 font-semibold not-italic"
+                        style={{
+                          textShadow: '0 1px 2px rgba(0, 0, 0, 0.08)'
+                        }}
+                      >
+                        Crafted by Demetrius
+                      </span>.
+                    </p>
+                  </motion.div>
+                </div>
+
+                {/* Architectural Detail Image */}
+                <motion.div
+                  initial="hidden"
+                  animate={isManifestoInView ? "visible" : "hidden"}
+                  variants={slideFromRightVariants}
+                  custom={0}
+                  className="hidden lg:block w-64 flex-shrink-0"
+                >
+                  <div 
+                    className="relative overflow-hidden rounded-lg"
                     style={{
-                      textShadow: `
-                        0 1px 3px rgba(0, 0, 0, 0.08),
-                        0 4px 12px rgba(0, 0, 0, 0.04)
+                      boxShadow: `
+                        0 4px 12px rgba(0, 0, 0, 0.1),
+                        0 16px 32px rgba(0, 0, 0, 0.08),
+                        0 32px 64px rgba(0, 0, 0, 0.04)
                       `
                     }}
                   >
-                    {line}
-                  </motion.p>
-                ))}
-                <motion.p
-                  custom={manifesto.length}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={manifestoVariants}
-                  className="text-xl text-gray-500 mt-12 italic font-light"
-                >
-                  This is who we are — and this is what it means to be Crafted by Demetrius.
-                </motion.p>
+                    <Image
+                      src="/images/who-we-are/steel-concrete-intersection.svg"
+                      alt="Precision engineering architectural detail"
+                      width={300}
+                      height={400}
+                      className="w-full h-auto grayscale contrast-125 hover:grayscale-0 transition-all duration-700"
+                    />
+                    {/* Blue tint overlay */}
+                    <div 
+                      className="absolute inset-0 bg-blue-600 mix-blend-multiply opacity-10 hover:opacity-0 transition-opacity duration-700"
+                    />
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </Container>
       </Section>

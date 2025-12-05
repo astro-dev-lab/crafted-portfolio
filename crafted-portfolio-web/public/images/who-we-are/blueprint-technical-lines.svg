@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="120" viewBox="0 0 1200 120">
+  <defs>
+    <linearGradient id="lineFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e40af" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="#1e40af" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#1e40af" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Horizontal precision lines at 8px intervals -->
+  <line x1="0" y1="24" x2="800" y2="24" stroke="url(#lineFade)" stroke-width="0.5"/>
+  <line x1="100" y1="48" x2="900" y2="48" stroke="url(#lineFade)" stroke-width="0.5"/>
+  <line x1="50" y1="72" x2="700" y2="72" stroke="url(#lineFade)" stroke-width="0.5"/>
+  <line x1="150" y1="96" x2="850" y2="96" stroke="url(#lineFade)" stroke-width="0.5"/>
+  
+  <!-- Dimension markers (engineering blueprint style) -->
+  <g stroke="#1e40af" stroke-width="0.5" opacity="0.1">
+    <!-- Vertical tick marks -->
+    <line x1="200" y1="20" x2="200" y2="100"/>
+    <line x1="400" y1="30" x2="400" y2="90"/>
+    <line x1="600" y1="25" x2="600" y2="95"/>
+    
+    <!-- Small measurement ticks -->
+    <line x1="196" y1="24" x2="204" y2="24"/>
+    <line x1="196" y1="96" x2="204" y2="96"/>
+    <line x1="396" y1="48" x2="404" y2="48"/>
+    <line x1="396" y1="72" x2="404" y2="72"/>
+  </g>
+  
+  <!-- Geometric precision circles -->
+  <circle cx="200" cy="60" r="3" fill="none" stroke="#1e40af" stroke-width="0.5" opacity="0.08"/>
+  <circle cx="400" cy="60" r="2" fill="none" stroke="#1e40af" stroke-width="0.5" opacity="0.08"/>
+  <circle cx="600" cy="60" r="4" fill="none" stroke="#1e40af" stroke-width="0.5" opacity="0.06"/>
+</svg>
