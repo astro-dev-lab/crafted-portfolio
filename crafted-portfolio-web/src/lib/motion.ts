@@ -1,9 +1,9 @@
 /**
  * Swiss Design System - Motion Library
- * 
+ *
  * Physics-based animation system following Swiss precision principles.
  * All timing values are mathematically derived from a 100ms base unit.
- * 
+ *
  * @module lib/motion
  */
 
@@ -91,14 +91,14 @@ export const prefersReducedMotion = (): boolean => {
 /**
  * Reactive hook that responds to prefers-reduced-motion changes.
  * Updates in real-time when user toggles accessibility settings.
- * 
+ *
  * Safe for SSR - returns false during server render, hydrates on client.
- * 
+ *
  * @returns boolean indicating if user prefers reduced motion
- * 
+ *
  * @example
  * const prefersReduced = useReducedMotion();
- * const variants = prefersReduced 
+ * const variants = prefersReduced
  *   ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
  *   : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
  */
@@ -112,10 +112,7 @@ export function useReducedMotion(): boolean {
   useEffect(() => {
     // Client-side only: Listen for preference changes
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    
-    // Sync initial state (handles SSR hydration)
-    setPrefersReduced(mediaQuery.matches);
-    
+
     // Handle changes (user toggles setting mid-session)
     const handler = (event: MediaQueryListEvent) => {
       setPrefersReduced(event.matches);
@@ -123,7 +120,7 @@ export function useReducedMotion(): boolean {
 
     // Subscribe to changes
     mediaQuery.addEventListener('change', handler);
-    
+
     // Cleanup listener on unmount (prevent memory leaks)
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
@@ -134,7 +131,7 @@ export function useReducedMotion(): boolean {
 /**
  * Helper to create motion variants that respect reduced motion preference.
  * Simplifies animations to fade-only when user prefers reduced motion.
- * 
+ *
  * @param standardVariants - Full animation variants
  * @param prefersReduced - Boolean from useReducedMotion hook
  * @returns Appropriate variants based on user preference
@@ -142,7 +139,12 @@ export function useReducedMotion(): boolean {
 export function getAccessibleVariants<T extends object>(
   standardVariants: T,
   prefersReduced: boolean
-): T | { hidden: { opacity: number }; visible: { opacity: number; transition: { duration: number } } } {
+):
+  | T
+  | {
+      hidden: { opacity: number };
+      visible: { opacity: number; transition: { duration: number } };
+    } {
   if (prefersReduced) {
     return {
       hidden: { opacity: 0 },
@@ -185,11 +187,9 @@ export const SWISS_TRANSITIONS = {
 /**
  * Create fade-in animation variants with reduced motion support.
  */
-export const createFadeVariants = (
-  duration: keyof typeof SWISS_TIMING = 'normal'
-) => {
+export const createFadeVariants = (duration: keyof typeof SWISS_TIMING = 'normal') => {
   const reducedMotion = prefersReducedMotion();
-  
+
   if (reducedMotion) {
     return {
       hidden: { opacity: 0 },
@@ -261,9 +261,7 @@ export const createSlideInLeftVariants = (
 /**
  * Create stagger container variants with reduced motion support.
  */
-export const createStaggerContainerVariants = (
-  stagger: keyof typeof SWISS_STAGGER = 'normal'
-) => {
+export const createStaggerContainerVariants = (stagger: keyof typeof SWISS_STAGGER = 'normal') => {
   const reducedMotion = prefersReducedMotion();
 
   if (reducedMotion) {
@@ -285,10 +283,7 @@ export const createStaggerContainerVariants = (
 /**
  * Create letter-by-letter animation variants for text reveals.
  */
-export const createLetterVariants = (
-  baseDelay: number = 0.8,
-  perLetterDelay: number = 0.05
-) => {
+export const createLetterVariants = (baseDelay: number = 0.8, perLetterDelay: number = 0.05) => {
   const reducedMotion = prefersReducedMotion();
 
   if (reducedMotion) {

@@ -21,7 +21,7 @@ export function Hero() {
       <div className='absolute inset-0 z-0'>
         <HeroScene />
       </div>
-      
+
       {/* Overlay Gradient for text readability */}
       <div className='absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/80 to-transparent z-0 pointer-events-none' />
 

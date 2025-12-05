@@ -71,13 +71,13 @@ export function SwissServiceCard({
           ease: SWISS_EASING.default,
         },
       }}
-      className="group relative"
+      className='group relative'
       data-testid={testId}
     >
-      <Card className="h-full border-0 bg-white relative overflow-hidden p-0">
+      <Card className='h-full border-0 bg-white relative overflow-hidden p-0'>
         {/* Swiss Precision Dots Background Pattern */}
         <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+          className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity'
           style={{
             transitionDuration: `${SWISS_TIMING.slow}ms`,
             backgroundImage: 'url(/images/who-we-are/swiss-precision-dots.svg)',
@@ -86,7 +86,7 @@ export function SwissServiceCard({
           }}
         />
         <div
-          className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"
+          className='absolute inset-0 bg-gradient-to-br from-gray-50 to-white'
           style={{
             boxShadow: `
               0 1px 3px rgba(0, 0, 0, 0.12),
@@ -97,15 +97,15 @@ export function SwissServiceCard({
           }}
         />
         {/* Swiss spacing: p-12 (48px) = 8px × 6 ✅ */}
-        <CardContent className="relative p-12 h-full flex flex-col">
+        <CardContent className='relative p-12 h-full flex flex-col'>
           {/* Geometric Accent */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-transparent opacity-60" />
+          <div className='absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-transparent opacity-60' />
 
           {/* Icon with Premium Treatment */}
           {/* Swiss spacing: mb-8 (32px) = 8px × 4 ✅ */}
-          <div className="mb-8">
+          <div className='mb-8'>
             <div
-              className="inline-flex p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl group-hover:from-blue-600 group-hover:to-blue-700 transition-all"
+              className='inline-flex p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl group-hover:from-blue-600 group-hover:to-blue-700 transition-all'
               style={{
                 transitionDuration: `${SWISS_TIMING.slow}ms`,
                 boxShadow: `
@@ -116,7 +116,7 @@ export function SwissServiceCard({
               }}
             >
               <Icon
-                className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors"
+                className='w-8 h-8 text-blue-600 group-hover:text-white transition-colors'
                 style={{ transitionDuration: `${SWISS_TIMING.slow}ms` }}
               />
             </div>
@@ -125,21 +125,21 @@ export function SwissServiceCard({
           {/* Typography with Mathematical Spacing */}
           {/* Swiss spacing: mb-6 (24px) = 8px × 3 ✅ */}
           <h3
-            className="text-3xl font-bold text-gray-900 mb-6 tracking-tight leading-tight"
+            className='text-3xl font-bold text-gray-900 mb-6 tracking-tight leading-tight'
             style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)' }}
           >
             {title}
           </h3>
 
           {/* Swiss spacing: mb-8 (32px) = 8px × 4 ✅ */}
-          <p className="text-gray-600 leading-relaxed mb-8 flex-grow text-lg">{description}</p>
+          <p className='text-gray-600 leading-relaxed mb-8 flex-grow text-lg'>{description}</p>
 
           {/* Enhanced CTA Buttons */}
           {/* Swiss spacing: space-y-4 (16px) = 8px × 2 ✅ */}
-          <div className="space-y-4">
+          <div className='space-y-4'>
             <Button
               asChild
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 py-4 text-lg font-semibold tracking-wide transition-all"
+              className='w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 py-4 text-lg font-semibold tracking-wide transition-all'
               style={{
                 transitionDuration: `${SWISS_TIMING.normal}ms`,
                 boxShadow: `
@@ -149,24 +149,24 @@ export function SwissServiceCard({
               }}
             >
               {/* Swiss spacing: gap-4 (16px) = 8px × 2 ✅ */}
-              <Link href={primaryLink} className="flex items-center justify-center gap-4">
-                {index === 0 ? <BookOpen className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+              <Link href={primaryLink} className='flex items-center justify-center gap-4'>
+                {index === 0 ? <BookOpen className='w-5 h-5' /> : <Play className='w-5 h-5' />}
                 {primaryText}
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className='w-5 h-5' />
               </Link>
             </Button>
 
             {/* Swiss spacing: py-4 (16px) = 8px × 2 ✅ */}
             <Button
               asChild
-              variant="outline"
-              className="w-full border-2 border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50 py-4 transition-all"
+              variant='outline'
+              className='w-full border-2 border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50 py-4 transition-all'
               style={{ transitionDuration: `${SWISS_TIMING.normal}ms` }}
             >
               {/* Swiss spacing: gap-2 (8px) = 8px × 1 ✅ */}
-              <Link href={secondaryLink} className="flex items-center justify-center gap-2">
+              <Link href={secondaryLink} className='flex items-center justify-center gap-2'>
                 {secondaryText}
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className='w-4 h-4' />
               </Link>
             </Button>
           </div>

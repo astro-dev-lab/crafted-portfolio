@@ -16,7 +16,7 @@ import {
 
 /**
  * SWISS DESIGN SYSTEM - Chatbot Component
- * 
+ *
  * Compliance References:
  * - Spacing: MASTER-STYLE-GUIDE.md §2.1 (8px grid: Sₙ = 8 × n)
  * - Typography: MASTER-STYLE-GUIDE.md §2.2 (1.25 scale: Tₙ = T₀ × 1.25^n)
@@ -27,17 +27,10 @@ import {
  */
 
 // =============================================================================
-// SWISS SPACING TOKENS (8px grid: Sₙ = 8 × n)
+// SWISS SPACING REFERENCE (8px grid: Sₙ = 8 × n)
 // Reference: MASTER-STYLE-GUIDE.md §2.1
+// Values used in Tailwind classes: xs=8px(gap-2), sm=16px(p-4), lg=32px(w-8)
 // =============================================================================
-const SWISS_SPACING = {
-  xs: 8,    // S₁ = 8 × 1
-  sm: 16,   // S₂ = 8 × 2
-  md: 24,   // S₃ = 8 × 3
-  lg: 32,   // S₄ = 8 × 4
-  xl: 40,   // S₅ = 8 × 5
-  xxl: 48,  // S₆ = 8 × 6
-} as const;
 
 // =============================================================================
 // SWISS ANIMATION VARIANTS
@@ -280,11 +273,7 @@ export function Chatbot() {
 
   if (!isOpen) {
     return (
-      <div 
-        className='fixed bottom-6 right-6 z-50'
-        role="region"
-        aria-label="Chat assistant"
-      >
+      <div className='fixed bottom-6 right-6 z-50' role='region' aria-label='Chat assistant'>
         {/* 
           FAB Button - Swiss Design Compliant
           Reference: MASTER-STYLE-GUIDE.md §2.1 (56px = S₇ = 8 × 7)
@@ -293,15 +282,15 @@ export function Chatbot() {
         */}
         <motion.div
           variants={prefersReducedMotion ? undefined : fabVariants}
-          initial="idle"
-          whileHover="hover"
-          whileTap="tap"
+          initial='idle'
+          whileHover='hover'
+          whileTap='tap'
         >
           <Button
             onClick={handleToggleOpen}
-            aria-label="Open chat assistant"
+            aria-label='Open chat assistant'
             aria-expanded={isOpen}
-            aria-controls="chatbot-dialog"
+            aria-controls='chatbot-dialog'
             className={cn(
               // Size: S₇ = 8 × 7 = 56px (Swiss grid compliant)
               'relative w-14 h-14 rounded-full',
@@ -314,7 +303,9 @@ export function Chatbot() {
               'focus-visible:ring-swiss-accent focus-visible:ring-offset-2'
             )}
           >
-            <span className='text-xl' aria-hidden="true">💬</span>
+            <span className='text-xl' aria-hidden='true'>
+              💬
+            </span>
             {unreadCount > 0 && (
               <Badge
                 variant='destructive'
@@ -339,29 +330,25 @@ export function Chatbot() {
   }
 
   return (
-    <div 
-      className='fixed bottom-6 right-6 z-50'
-      role="region"
-      aria-label="Chat assistant"
-    >
+    <div className='fixed bottom-6 right-6 z-50' role='region' aria-label='Chat assistant'>
       {/* 
         Chat Dialog - Swiss Design Compliant
         Reference: MASTER-STYLE-GUIDE.md §2.1 (384px = S₄₈, 504px = S₆₃)
         Reference: ANIMATION-SPECIFIC-GUIDE.md §2 (chatbotVariants)
       */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode='wait'>
         <motion.div
-          key="chatbot-dialog"
+          key='chatbot-dialog'
           variants={prefersReducedMotion ? undefined : chatbotVariants}
-          initial="closed"
-          animate="open"
-          exit="exit"
+          initial='closed'
+          animate='open'
+          exit='exit'
         >
-          <Card 
-            id="chatbot-dialog"
-            role="dialog"
-            aria-labelledby="chatbot-title"
-            aria-describedby="chatbot-description"
+          <Card
+            id='chatbot-dialog'
+            role='dialog'
+            aria-labelledby='chatbot-title'
+            aria-describedby='chatbot-description'
             className={cn(
               // Size: S₄₈ × S₆₃ = 384 × 504 (Swiss grid)
               'w-96 h-[504px]',
@@ -379,26 +366,23 @@ export function Chatbot() {
                 {/* Left: Avatar and Status - gap-4 = S₂ = 16px */}
                 <div className='flex items-center gap-4'>
                   {/* Avatar: S₄ = 32px */}
-                  <div 
+                  <div
                     className='w-8 h-8 bg-white/20 rounded-full flex items-center justify-center'
-                    aria-hidden="true"
+                    aria-hidden='true'
                   >
                     <span className='text-sm'>🤖</span>
                   </div>
                   <div>
-                    <CardTitle 
-                      id="chatbot-title"
-                      className='text-xl font-semibold'
-                    >
+                    <CardTitle id='chatbot-title' className='text-xl font-semibold'>
                       Portfolio Assistant
                     </CardTitle>
                     {/* Status indicator with aria */}
-                    <div 
+                    <div
                       className='flex items-center gap-2 text-base text-swiss-accent-lighter'
-                      role="status"
-                      aria-live="polite"
+                      role='status'
+                      aria-live='polite'
                     >
-                      <motion.div 
+                      <motion.div
                         className='w-2 h-2 bg-swiss-success rounded-full'
                         animate={{ opacity: [1, 0.5, 1] }}
                         transition={{
@@ -406,7 +390,7 @@ export function Chatbot() {
                           ease: SWISS_EASING.easeInOut,
                           repeat: Infinity,
                         }}
-                        aria-hidden="true"
+                        aria-hidden='true'
                       />
                       <span>Online</span>
                     </div>
@@ -417,37 +401,38 @@ export function Chatbot() {
                   variant='ghost'
                   size='sm'
                   onClick={handleToggleOpen}
-                  aria-label="Close chat"
+                  aria-label='Close chat'
                   className='text-white hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white'
                 >
-                  <span aria-hidden="true">✕</span>
+                  <span aria-hidden='true'>✕</span>
                 </Button>
               </div>
             </CardHeader>
 
             <CardContent className='p-0 flex flex-col h-full'>
               {/* Screen reader description */}
-              <p id="chatbot-description" className="sr-only">
-                Interactive chat assistant to help you explore our portfolio, case studies, and services.
+              <p id='chatbot-description' className='sr-only'>
+                Interactive chat assistant to help you explore our portfolio, case studies, and
+                services.
               </p>
-              
+
               {/* 
                 Messages Container
                 Reference: MASTER-STYLE-GUIDE.md §2.1 (p-4 = S₂, gap-4 = S₂)
               */}
-              <div 
+              <div
                 ref={chatContainerRef}
                 className='flex-1 overflow-y-auto p-4 space-y-4'
-                role="log"
-                aria-live="polite"
-                aria-label="Chat messages"
+                role='log'
+                aria-live='polite'
+                aria-label='Chat messages'
               >
                 {messages.map((message, index) => (
                   <motion.div
                     key={message.id}
                     variants={prefersReducedMotion ? undefined : messageVariants}
-                    initial="hidden"
-                    animate="visible"
+                    initial='hidden'
+                    animate='visible'
                     transition={{ delay: index * SWISS_STAGGER.tight }}
                     className={cn(
                       'flex',
@@ -467,7 +452,7 @@ export function Chatbot() {
                           ? 'bg-swiss-accent text-white'
                           : 'bg-swiss-surface text-swiss-text'
                       )}
-                      role="article"
+                      role='article'
                       aria-label={`Message from ${message.sender === 'user' ? 'you' : 'assistant'}`}
                     >
                       {message.text}
@@ -479,8 +464,8 @@ export function Chatbot() {
                       <div
                         className={cn(
                           'text-xs mt-2 opacity-70',
-                          message.sender === 'user' 
-                            ? 'text-swiss-accent-lighter' 
+                          message.sender === 'user'
+                            ? 'text-swiss-accent-lighter'
                             : 'text-swiss-text-muted'
                         )}
                         aria-label={`Sent at ${message.timestamp.toLocaleTimeString()}`}
@@ -501,29 +486,29 @@ export function Chatbot() {
                 */}
                 <AnimatePresence>
                   {isTyping && (
-                    <motion.div 
+                    <motion.div
                       className='flex justify-start'
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={SWISS_TRANSITIONS.fast}
                     >
-                      <div 
+                      <div
                         className='bg-swiss-surface rounded-lg p-4'
-                        role="status"
-                        aria-label="Assistant is typing"
+                        role='status'
+                        aria-label='Assistant is typing'
                       >
                         <div className='flex gap-2'>
-                          {[0, 1, 2].map((i) => (
+                          {[0, 1, 2].map(i => (
                             <motion.div
                               key={i}
                               className='w-2 h-2 bg-swiss-text-muted rounded-full'
                               variants={typingDotVariants}
-                              animate="bounce"
+                              animate='bounce'
                               transition={{
-                                delay: i * (SWISS_STAGGER.normal),
+                                delay: i * SWISS_STAGGER.normal,
                               }}
-                              aria-hidden="true"
+                              aria-hidden='true'
                             />
                           ))}
                         </div>
@@ -542,23 +527,20 @@ export function Chatbot() {
               */}
               <AnimatePresence>
                 {messages.length <= 2 && (
-                  <motion.div 
+                  <motion.div
                     className='px-4 pb-2'
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={SWISS_TRANSITIONS.fast}
                   >
-                    <div 
-                      className='text-xs text-swiss-text-muted mb-2'
-                      id="quick-replies-label"
-                    >
+                    <div className='text-xs text-swiss-text-muted mb-2' id='quick-replies-label'>
                       Quick questions:
                     </div>
-                    <div 
+                    <div
                       className='flex flex-wrap gap-2'
-                      role="group"
-                      aria-labelledby="quick-replies-label"
+                      role='group'
+                      aria-labelledby='quick-replies-label'
                     >
                       {quickReplies.map((reply, index) => (
                         <motion.div
@@ -590,32 +572,30 @@ export function Chatbot() {
                 Reference: MASTER-STYLE-GUIDE.md §2.1 (p-4 = S₂, gap-2 = S₁, px-4 = S₂)
               */}
               <div className='border-t border-swiss-border p-4'>
-                <form 
-                  onSubmit={handleSubmit} 
-                  className='flex gap-2'
-                  aria-label="Send a message"
-                >
+                <form onSubmit={handleSubmit} className='flex gap-2' aria-label='Send a message'>
                   <Input
                     value={inputValue}
                     onChange={e => setInputValue(e.target.value)}
                     placeholder='Ask me anything...'
                     className='flex-1'
                     disabled={isTyping}
-                    aria-label="Message input"
-                    aria-describedby={isTyping ? "typing-status" : undefined}
+                    aria-label='Message input'
+                    aria-describedby={isTyping ? 'typing-status' : undefined}
                   />
                   {isTyping && (
-                    <span id="typing-status" className="sr-only">
+                    <span id='typing-status' className='sr-only'>
                       Please wait, assistant is typing a response
                     </span>
                   )}
-                  <Button 
-                    type='submit' 
-                    disabled={!inputValue.trim() || isTyping} 
+                  <Button
+                    type='submit'
+                    disabled={!inputValue.trim() || isTyping}
                     className='px-4'
-                    aria-label="Send message"
+                    aria-label='Send message'
                   >
-                    <span className='text-xl' aria-hidden="true">→</span>
+                    <span className='text-xl' aria-hidden='true'>
+                      →
+                    </span>
                   </Button>
                 </form>
               </div>

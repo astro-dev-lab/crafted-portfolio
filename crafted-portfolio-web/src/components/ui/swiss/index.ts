@@ -1,6 +1,6 @@
 /**
  * Swiss Design System Components
- * 
+ *
  * Reusable components following Swiss Design principles:
  * - 8px mathematical grid
  * - 1.25 typography scale
