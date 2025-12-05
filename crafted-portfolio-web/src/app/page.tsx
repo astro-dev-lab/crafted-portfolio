@@ -4,6 +4,7 @@ import { WhyUs } from '@/components/sections/WhyUs';
 import { CaseStudies } from '@/components/sections/CaseStudies';
 import { TechStack } from '@/components/sections/TechStack';
 import { ContactCTA } from '@/components/sections/ContactCTA';
+import { Chatbot } from '@/components/Chatbot';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <CaseStudies />
       <TechStack />
       <ContactCTA />
+      <Chatbot />
     </>
   );
 }
