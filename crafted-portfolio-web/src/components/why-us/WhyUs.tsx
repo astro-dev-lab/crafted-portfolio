@@ -70,10 +70,52 @@ export const WhyUs = memo<WhyUsProps>(function WhyUs({ className, id = 'why-us' 
     <section
       ref={sectionRef}
       id={id}
-      className={cn(WHY_US_CLASSES.section, className)}
+      className={cn(WHY_US_CLASSES.section, 'relative overflow-hidden', className)}
       aria-label='Why Choose Us'
     >
-      <Container className={WHY_US_CLASSES.container}>
+      {/* Swiss Precision Dots Background Pattern */}
+      <div
+        className='absolute inset-0 pointer-events-none opacity-40'
+        style={{
+          backgroundImage: 'url(/images/who-we-are/swiss-precision-dots.svg)',
+          backgroundSize: '200px 200px',
+          backgroundRepeat: 'repeat',
+          backgroundPosition: 'top left',
+        }}
+        aria-hidden='true'
+      />
+
+      {/* Precision Mesh Accent - Top Right */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={isInView ? { opacity: 0.3, x: 0 } : { opacity: 0, x: 50 }}
+        transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
+        className='absolute top-0 right-0 w-96 h-96 pointer-events-none hidden lg:block'
+        style={{
+          backgroundImage: 'url(/images/who-we-are/precision-mesh-pattern.svg)',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'top right',
+        }}
+        aria-hidden='true'
+      />
+
+      {/* Blueprint Lines Accent - Bottom Left */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={isInView ? { opacity: 0.2, x: 0 } : { opacity: 0, x: -50 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+        className='absolute bottom-0 left-0 w-80 h-40 pointer-events-none hidden lg:block'
+        style={{
+          backgroundImage: 'url(/images/who-we-are/blueprint-technical-lines.svg)',
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'bottom left',
+        }}
+        aria-hidden='true'
+      />
+
+      <Container className={cn(WHY_US_CLASSES.container, 'relative z-10')}>
         {/* Animated Header */}
         <motion.div initial='hidden' animate={isInView ? 'visible' : 'hidden'}>
           <SectionHeader
