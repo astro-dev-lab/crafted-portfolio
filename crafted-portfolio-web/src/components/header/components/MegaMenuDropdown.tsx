@@ -46,6 +46,7 @@ import { useKeyboardNavigation } from '../hooks/useKeyboardNavigation';
 import { MenuTrigger } from './MenuTrigger';
 import { MenuSection } from './MenuSection';
 import { MenuFooter } from './MenuFooter';
+import { MenuCTA } from './MenuCTA';
 import type { MegaMenuDropdownProps, MegaMenuItem } from '../types';
 
 export const MegaMenuDropdown = memo<MegaMenuDropdownProps>(function MegaMenuDropdown({
@@ -158,6 +159,11 @@ export const MegaMenuDropdown = memo<MegaMenuDropdownProps>(function MegaMenuDro
                 href={config.footer.href}
                 linkText={config.footer.linkText}
               />
+            )}
+
+            {/* Optional CTA Buttons */}
+            {config.cta && (
+              <MenuCTA primary={config.cta.primary} secondary={config.cta.secondary} />
             )}
           </motion.div>
         )}

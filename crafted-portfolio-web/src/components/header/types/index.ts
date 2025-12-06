@@ -61,6 +61,16 @@ export interface MegaMenuSection {
 }
 
 /**
+ * CTA Button Configuration
+ *
+ * Used in mega menu footers for primary and secondary actions.
+ */
+export interface MegaMenuCTA {
+  readonly label: string;
+  readonly href: string;
+}
+
+/**
  * Complete mega menu configuration
  *
  * Mathematical constraints:
@@ -78,6 +88,10 @@ export interface MegaMenuConfig {
     readonly text: string;
     readonly href: string;
     readonly linkText: string;
+  };
+  readonly cta?: {
+    readonly primary: MegaMenuCTA;
+    readonly secondary?: MegaMenuCTA;
   };
 }
 

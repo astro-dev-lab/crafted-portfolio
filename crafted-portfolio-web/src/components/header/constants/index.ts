@@ -30,6 +30,7 @@
  */
 
 import type { CaseStudy, NavItem, MegaMenuConfig } from '../types';
+import { Rocket, Search, FileSignature } from 'lucide-react';
 
 // =============================================================================
 // SWISS SPACING (Sₙ = 8 × n)
@@ -295,48 +296,61 @@ export const RESOURCES_MENU: MegaMenuConfig = {
  * Pricing Mega Menu Configuration
  *
  * Mathematical Layout:
- * - Width: S₆₄ = 512px (wide)
- * - Columns: 3
+ * - Width: S₄₈ = 384px (standard)
+ * - Columns: 1
  * - Item count: 3
- * - Total stagger: D = 200ms + (3-1) × 80ms = 360ms
+ * - Total stagger: D = 200ms + (3-1) × 50ms = 300ms
+ *
+ * Service Offerings:
+ * 1. Astro Express - Fixed-scope rapid build
+ * 2. SEO Review - Technical audit & optimization
+ * 3. Custom Quote - Scoped engagement for complex projects
  */
 export const PRICING_MENU: MegaMenuConfig = {
   id: 'pricing',
   label: 'Pricing',
-  width: 'wide',
-  columns: 3,
+  width: 'standard',
+  columns: 1,
   sections: [
     {
-      id: 'plans',
+      id: 'services',
+      title: 'Services',
       items: [
         {
-          id: 'free',
-          title: 'Free',
-          description: 'Perfect for side projects',
-          href: '/pricing#free',
+          id: 'astro-express',
+          title: 'Astro Express',
+          description: 'Fixed-scope build, fast turnaround',
+          href: '/pricing/astro-express',
+          icon: Rocket,
         },
         {
-          id: 'pro',
-          title: 'Pro',
-          description: 'For growing businesses',
-          href: '/pricing#pro',
-          badge: { text: 'Popular', variant: 'popular' },
+          id: 'seo-review',
+          title: 'SEO Review',
+          description: 'Technical audit & optimization report',
+          href: '/pricing/seo-review',
+          icon: Search,
         },
         {
-          id: 'enterprise',
-          title: 'Enterprise',
-          description: 'Custom solutions at scale',
-          href: '/pricing#enterprise',
+          id: 'custom-quote',
+          title: 'Custom Quote',
+          description: 'Scoped engagement for complex projects',
+          href: '/pricing/custom-quote',
+          icon: FileSignature,
         },
       ],
     },
   ],
-  footer: {
-    text: 'Not sure which plan?',
-    href: '/pricing/compare',
-    linkText: 'Compare plans →',
+  cta: {
+    primary: {
+      label: 'Compare options',
+      href: '/pricing',
+    },
+    secondary: {
+      label: 'Talk to Demetrius',
+      href: '/#contact',
+    },
   },
-} as const;
+};
 
 /**
  * Navigation Items with Mega Menu Support

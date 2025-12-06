@@ -21,6 +21,7 @@ export { MenuItem } from './MenuItem';
 export { MenuSection } from './MenuSection';
 export { MenuBadge } from './MenuBadge';
 export { MenuFooter } from './MenuFooter';
+export { MenuCTA } from './MenuCTA';
 
 // Legacy (deprecated - use MegaMenuDropdown instead)
 export { CaseStudiesDropdown } from './CaseStudiesDropdown';
