@@ -2,7 +2,12 @@
  * Logo Component
  *
  * Brand logo with scroll-aware styling.
- * Reference: MASTER-STYLE-GUIDE.md §2.2
+ *
+ * Swiss Compliance:
+ * - Timing: 200ms (SWISS_TIMING.fast) for color transitions
+ * - Easing: default [0.25, 0.46, 0.45, 0.94]
+ * - Typography: text-xl = 20px (T₁ in Perfect Fourth scale)
+ * - Reference: MASTER-STYLE-GUIDE.md §2.2, TIMING-SPECIFIC-GUIDE.md §2
  *
  * @module header/components/Logo
  */
