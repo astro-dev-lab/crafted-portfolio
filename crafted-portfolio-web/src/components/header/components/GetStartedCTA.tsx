@@ -2,7 +2,11 @@
  * GetStartedCTA Component
  *
  * Primary call-to-action button with scroll-aware styling.
- * Reference: MASTER-STYLE-GUIDE.md §4.3.1
+ *
+ * Swiss Compliance:
+ * - Timing: 100ms (SWISS_TIMING.micro) for hover states
+ * - Easing: default [0.25, 0.46, 0.45, 0.94]
+ * - Reference: MASTER-STYLE-GUIDE.md §4.3.1, TIMING-SPECIFIC-GUIDE.md §2
  *
  * @module header/components/GetStartedCTA
  */
@@ -21,7 +25,8 @@ export const GetStartedCTA = memo<GetStartedCTAProps>(function GetStartedCTA({ i
       <Button
         size='sm'
         className={cn(
-          'transition-colors',
+          // Swiss timing: micro (100ms) for hover feedback
+          'transition-colors duration-100 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]',
           isScrolled ? 'bg-blue-600 hover:bg-blue-700' : 'bg-white text-gray-900 hover:bg-gray-100'
         )}
       >
