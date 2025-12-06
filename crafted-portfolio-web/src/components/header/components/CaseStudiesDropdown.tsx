@@ -68,7 +68,12 @@ export const CaseStudiesDropdown = memo<CaseStudiesDropdownProps>(function CaseS
           <h3 className={MEGA_MENU_CLASSES.title}>Interactive Demos</h3>
           <div className={MEGA_MENU_CLASSES.grid}>
             {caseStudies.map(study => (
-              <Link key={study.id} href={study.href} className={MEGA_MENU_CLASSES.item} role='menuitem'>
+              <Link
+                key={study.id}
+                href={study.href}
+                className={MEGA_MENU_CLASSES.item}
+                role='menuitem'
+              >
                 <div className='font-medium text-gray-900'>{study.title}</div>
                 <div className='text-sm text-gray-600'>{study.description}</div>
               </Link>

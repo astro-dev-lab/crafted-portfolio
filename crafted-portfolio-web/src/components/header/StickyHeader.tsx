@@ -2,7 +2,12 @@
  * StickyHeader Component
  *
  * Main orchestrator component that composes all header sub-components.
- * Reference: MASTER-STYLE-GUIDE.md §2.1
+ *
+ * Swiss Compliance:
+ * - Timing: 300ms (SWISS_TIMING.normal) for background transitions
+ * - Easing: default [0.25, 0.46, 0.45, 0.94]
+ * - Spacing: py-4 = 16px (S₂ in 8px grid)
+ * - Reference: MASTER-STYLE-GUIDE.md §2.1, TIMING-SPECIFIC-GUIDE.md §2
  *
  * This file is intentionally minimal as all logic is delegated
  * to specialized hooks and components.
@@ -33,6 +38,7 @@ export const StickyHeader = memo<StickyHeaderProps>(function StickyHeader({ clas
       role='banner'
     >
       <Container>
+        {/* py-4 = 16px = S₂ (Swiss 8px grid) */}
         <div className='flex items-center justify-between py-4'>
           <Logo isScrolled={isScrolled} />
 
