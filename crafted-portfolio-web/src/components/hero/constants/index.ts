@@ -30,12 +30,7 @@
  */
 
 import type { HeroContentConfig } from '../types';
-import {
-  createSlideUpVariants,
-  createStaggerContainerVariants,
-  SWISS_TIMING,
-  SWISS_STAGGER,
-} from '@/lib/motion';
+import { SWISS_TIMING, SWISS_STAGGER } from '@/lib/motion';
 
 // =============================================================================
 // SWISS SPACING (Sₙ = 8 × n)
@@ -92,47 +87,30 @@ export const HERO_CONTENT: HeroContentConfig = {
 } as const;
 
 // =============================================================================
-// ANIMATION VARIANTS (Swiss Design Compliant)
+// ANIMATION CONFIGURATION
+// Reference: TIMING-SPECIFIC-GUIDE.md §2
 // =============================================================================
 
 /**
- * Headline animation variants
+ * Hero animation configuration
+ *
+ * These parameters are used by useHeroAnimation hook to create variants.
+ * Configuration is kept in constants for consistency and documentation.
  *
  * Mathematical properties:
- * - Distance: 20px slide up
+ * - Slide distance: 20px
  * - Duration: 800ms (SWISS_TIMING.hero)
+ * - Stagger type: 'dramatic' (150ms between elements)
  * - Easing: easeOut [0.22, 0.61, 0.36, 1]
- *
- * Motion formula: y(t) = 20 × (1 - easeOut(t/800))
  */
-export const HERO_HEADLINE_VARIANTS = createSlideUpVariants(20, 'hero');
-
-/**
- * Subheadline animation variants
- *
- * Identical timing to headline for consistency
- * Stagger delay applied by container
- */
-export const HERO_SUBHEADLINE_VARIANTS = createSlideUpVariants(20, 'hero');
-
-/**
- * CTA container animation variants
- *
- * Stagger configuration:
- * - Type: dramatic (150ms between children)
- * - Sequence: D_total = (n-1) × 150ms = 150ms for 2 buttons
- *
- * Reference: TIMING-SPECIFIC-GUIDE.md §4.2
- */
-export const HERO_CTA_CONTAINER_VARIANTS = createStaggerContainerVariants('dramatic');
-
-/**
- * Individual CTA button animation variants
- *
- * Children of stagger container
- * Inherit timing from parent orchestration
- */
-export const HERO_CTA_ITEM_VARIANTS = createSlideUpVariants(20, 'hero');
+export const HERO_ANIMATION_CONFIG = {
+  /** Distance to slide up (in pixels) */
+  slideDistance: 20,
+  /** Animation duration key */
+  duration: 'hero' as const,
+  /** Stagger type for sequential reveals */
+  stagger: 'dramatic' as const,
+} as const;
 
 // =============================================================================
 // COMPONENT STYLE CLASSES

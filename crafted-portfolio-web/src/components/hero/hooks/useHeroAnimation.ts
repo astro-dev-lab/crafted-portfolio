@@ -25,13 +25,13 @@
 'use client';
 
 import { useMemo } from 'react';
-import { useReducedMotion, getAccessibleVariants } from '@/lib/motion';
 import {
-  HERO_HEADLINE_VARIANTS,
-  HERO_SUBHEADLINE_VARIANTS,
-  HERO_CTA_CONTAINER_VARIANTS,
-  HERO_CTA_ITEM_VARIANTS,
-} from '../constants';
+  useReducedMotion,
+  getAccessibleVariants,
+  createSlideUpVariants,
+  createStaggerContainerVariants,
+} from '@/lib/motion';
+import { HERO_ANIMATION_CONFIG } from '../constants';
 import type { UseHeroAnimationReturn } from '../types';
 
 /**
@@ -54,14 +54,27 @@ export function useHeroAnimation(): UseHeroAnimationReturn {
 
   // Memoize variants to prevent recreation on every render
   const variants = useMemo(() => {
+    // Create base variants from configuration
+    const headlineBase = createSlideUpVariants(
+      HERO_ANIMATION_CONFIG.slideDistance,
+      HERO_ANIMATION_CONFIG.duration
+    );
+    const subheadlineBase = createSlideUpVariants(
+      HERO_ANIMATION_CONFIG.slideDistance,
+      HERO_ANIMATION_CONFIG.duration
+    );
+    const ctaContainerBase = createStaggerContainerVariants(HERO_ANIMATION_CONFIG.stagger);
+    const ctaItemBase = createSlideUpVariants(
+      HERO_ANIMATION_CONFIG.slideDistance,
+      HERO_ANIMATION_CONFIG.duration
+    );
+
+    // Apply accessibility fallbacks
     return {
-      headlineVariants: getAccessibleVariants(HERO_HEADLINE_VARIANTS, prefersReducedMotion),
-      subheadlineVariants: getAccessibleVariants(HERO_SUBHEADLINE_VARIANTS, prefersReducedMotion),
-      ctaContainerVariants: getAccessibleVariants(
-        HERO_CTA_CONTAINER_VARIANTS,
-        prefersReducedMotion
-      ),
-      ctaItemVariants: getAccessibleVariants(HERO_CTA_ITEM_VARIANTS, prefersReducedMotion),
+      headlineVariants: getAccessibleVariants(headlineBase, prefersReducedMotion),
+      subheadlineVariants: getAccessibleVariants(subheadlineBase, prefersReducedMotion),
+      ctaContainerVariants: getAccessibleVariants(ctaContainerBase, prefersReducedMotion),
+      ctaItemVariants: getAccessibleVariants(ctaItemBase, prefersReducedMotion),
       prefersReducedMotion,
     };
   }, [prefersReducedMotion]);

@@ -1,7 +1,7 @@
 import { Hero } from '@/components/hero';
 import { AboutUs } from '@/components/sections/AboutUs';
 import { AboutUsSwiss } from '@/components/sections/AboutUsSwiss';
-import { WhyUs } from '@/components/sections/WhyUs';
+import { WhyUs } from '@/components/why-us';
 import { CaseStudies } from '@/components/sections/CaseStudies';
 import { TechStack } from '@/components/sections/TechStack';
 import { ContactCTA } from '@/components/sections/ContactCTA';

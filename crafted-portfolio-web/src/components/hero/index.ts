@@ -14,4 +14,4 @@ export { Hero } from './Hero';
 export type { HeroProps, HeroCTAConfig, HeroContentConfig } from './types';
 
 // Constants (for testing/documentation)
-export { HERO_CONTENT, HERO_ANIMATION_TIMING } from './constants';
+export { HERO_CONTENT, HERO_ANIMATION_CONFIG, HERO_ANIMATION_TIMING } from './constants';
