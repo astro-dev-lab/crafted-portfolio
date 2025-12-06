@@ -28,8 +28,8 @@ export const MessageBubble = memo<MessageBubbleProps>(function MessageBubble({
   return (
     <motion.div
       variants={bubbleVariants}
-      initial="hidden"
-      animate="visible"
+      initial='hidden'
+      animate='visible'
       transition={{ delay: index * SWISS_STAGGER.tight }}
       className={cn('flex', isUser ? 'justify-end' : 'justify-start')}
     >
@@ -42,7 +42,7 @@ export const MessageBubble = memo<MessageBubbleProps>(function MessageBubble({
               ? 'bg-red-50 text-red-800 border border-red-200'
               : 'bg-swiss-surface text-swiss-text'
         )}
-        role="article"
+        role='article'
         aria-label={`Message from ${isUser ? 'you' : 'assistant'}`}
       >
         {message.text}

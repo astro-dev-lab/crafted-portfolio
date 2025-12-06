@@ -99,9 +99,7 @@ export function useChatState(): UseChatStateReturn {
       // Performance guard: limit message history
       setMessages(prev => {
         const updated = [...prev, userMessage];
-        return updated.length > LIMITS.MAX_MESSAGES
-          ? updated.slice(-LIMITS.MAX_MESSAGES)
-          : updated;
+        return updated.length > LIMITS.MAX_MESSAGES ? updated.slice(-LIMITS.MAX_MESSAGES) : updated;
       });
       setInputValue('');
 
@@ -144,13 +142,11 @@ export function useChatState(): UseChatStateReturn {
   /**
    * Handles form submission
    */
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
+  const handleSendMessageFromInput = useCallback(() => {
+    if (inputValue.trim()) {
       handleSendMessage(inputValue);
-    },
-    [inputValue, handleSendMessage]
-  );
+    }
+  }, [inputValue, handleSendMessage]);
 
   /**
    * Handles quick reply selection
@@ -171,18 +167,23 @@ export function useChatState(): UseChatStateReturn {
     }
   }, []);
 
+  /**
+   * Handles closing the chat dialog
+   */
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   return {
     messages,
     inputValue,
     isTyping,
     isOpen,
     unreadCount,
-    setInputValue,
-    handleToggleOpen,
-    handleSendMessage,
-    handleSubmit,
-    handleQuickReply,
+    handleToggle: handleToggleOpen,
+    handleClose,
     handleInputChange,
-    messagesEndRef,
+    handleSendMessage: handleSendMessageFromInput,
+    handleQuickReply,
   };
 }

@@ -44,6 +44,9 @@ export const DIALOG_DIMENSIONS = {
   INPUT_HEIGHT: 64,
 } as const;
 
+/** FAB size: S₇ = 8 × 7 = 56px */
+export const FAB_SIZE = 56;
+
 // =============================================================================
 // TIME CONSTANTS
 // =============================================================================
@@ -117,6 +120,19 @@ export const fabVariants = {
     scale: 0.98,
     transition: SWISS_TRANSITIONS.micro,
   },
+  icon: {
+    initial: { opacity: 0, scale: 0.8, rotate: -90 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: SWISS_TIMING.fast / 1000,
+        ease: SWISS_EASING.easeOut,
+      },
+    },
+    exit: { opacity: 0, scale: 0.8, rotate: 90 },
+  },
 };
 
 export const messageVariants = {
@@ -147,10 +163,10 @@ export const typingDotVariants = {
 // =============================================================================
 
 export const QUICK_REPLIES: readonly QuickReply[] = [
-  { text: 'Show me your case studies', value: 'case-studies' },
-  { text: 'What services do you offer?', value: 'services' },
-  { text: 'Tell me about your tech stack', value: 'tech-stack' },
-  { text: 'How can we work together?', value: 'collaboration' },
+  { id: 'qr-case-studies', text: 'Show me your case studies', value: 'case-studies' },
+  { id: 'qr-services', text: 'What services do you offer?', value: 'services' },
+  { id: 'qr-tech-stack', text: 'Tell me about your tech stack', value: 'tech-stack' },
+  { id: 'qr-collaboration', text: 'How can we work together?', value: 'collaboration' },
 ] as const;
 
 export const PREDEFINED_RESPONSES: Readonly<Record<string, string>> = {

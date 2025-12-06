@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Swiss Design System - Motion Library
  *

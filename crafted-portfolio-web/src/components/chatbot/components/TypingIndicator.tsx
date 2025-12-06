@@ -23,26 +23,26 @@ export const TypingIndicator = memo<TypingIndicatorProps>(function TypingIndicat
 
   return (
     <motion.div
-      className="flex justify-start"
+      className='flex justify-start'
       initial={{ opacity: 0, y: SWISS_SPACING.XS }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -SWISS_SPACING.XS }}
       transition={SWISS_TRANSITIONS.fast}
     >
       <div
-        className="bg-swiss-surface rounded-lg p-4"
-        role="status"
-        aria-label="Assistant is typing"
+        className='bg-swiss-surface rounded-lg p-4'
+        role='status'
+        aria-label='Assistant is typing'
       >
-        <div className="flex gap-2">
+        <div className='flex gap-2'>
           {[0, 1, 2].map(i => (
             <motion.div
               key={i}
-              className="w-2 h-2 bg-swiss-text-muted rounded-full"
+              className='w-2 h-2 bg-swiss-text-muted rounded-full'
               variants={prefersReducedMotion ? undefined : typingDotVariants}
-              animate="bounce"
+              animate='bounce'
               transition={{ delay: i * SWISS_STAGGER.normal }}
-              aria-hidden="true"
+              aria-hidden='true'
             />
           ))}
         </div>

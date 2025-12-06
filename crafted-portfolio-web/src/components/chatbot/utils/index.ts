@@ -40,10 +40,7 @@ export const resetMessageIdCounter = (): void => {
  * - Basic XSS prevention
  */
 export const sanitizeInput = (input: string): string => {
-  return input
-    .trim()
-    .slice(0, LIMITS.MAX_INPUT_LENGTH)
-    .replace(/[<>]/g, ''); // Basic XSS prevention
+  return input.trim().slice(0, LIMITS.MAX_INPUT_LENGTH).replace(/[<>]/g, ''); // Basic XSS prevention
 };
 
 /**

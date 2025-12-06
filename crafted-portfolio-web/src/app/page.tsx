@@ -5,7 +5,7 @@ import { WhyUs } from '@/components/sections/WhyUs';
 import { CaseStudies } from '@/components/sections/CaseStudies';
 import { TechStack } from '@/components/sections/TechStack';
 import { ContactCTA } from '@/components/sections/ContactCTA';
-import { Chatbot } from '@/components/Chatbot';
+import { Chatbot } from '@/components/chatbot';
 
 // Swiss Design System Feature Flag
 // Set to true to enable Swiss-compliant AboutUs section

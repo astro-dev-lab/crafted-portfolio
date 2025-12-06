@@ -26,6 +26,7 @@ export interface ChatMessage {
 
 /** Quick reply option interface */
 export interface QuickReply {
+  readonly id: string;
   readonly text: string;
   readonly value: string;
 }
@@ -40,6 +41,7 @@ export interface TypingIndicatorProps {
 }
 
 export interface ChatHeaderProps {
+  readonly labelId: string;
   readonly onClose: () => void;
   readonly prefersReducedMotion: boolean;
 }
@@ -60,18 +62,21 @@ export interface ChatMessagesProps {
 export interface QuickRepliesProps {
   readonly replies: readonly QuickReply[];
   readonly onSelect: (reply: QuickReply) => void;
-  readonly isVisible: boolean;
+  readonly disabled?: boolean;
+  readonly prefersReducedMotion: boolean;
 }
 
 export interface ChatInputProps {
   readonly value: string;
   readonly onChange: (value: string) => void;
-  readonly onSubmit: (e: React.FormEvent) => void;
-  readonly isDisabled: boolean;
-  readonly inputRef?: React.RefObject<HTMLInputElement | null>;
+  readonly onSubmit: () => void;
+  readonly onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  readonly disabled?: boolean;
+  readonly inputId?: string;
 }
 
 export interface ChatFABProps {
+  readonly id?: string;
   readonly onClick: () => void;
   readonly unreadCount: number;
   readonly isOpen: boolean;
@@ -85,12 +90,12 @@ export interface ChatDialogProps {
   readonly isTyping: boolean;
   readonly inputValue: string;
   readonly onInputChange: (value: string) => void;
-  readonly onSubmit: (e: React.FormEvent) => void;
+  readonly onSendMessage: () => void;
   readonly onQuickReply: (reply: QuickReply) => void;
   readonly prefersReducedMotion: boolean;
-  readonly messagesEndRef: React.RefObject<HTMLDivElement | null>;
   readonly dialogId: string;
-  readonly quickReplies: readonly QuickReply[];
+  readonly labelId: string;
+  readonly inputId: string;
 }
 
 // =============================================================================
@@ -103,11 +108,9 @@ export interface UseChatStateReturn {
   readonly isTyping: boolean;
   readonly isOpen: boolean;
   readonly unreadCount: number;
-  readonly setInputValue: (value: string) => void;
-  readonly handleToggleOpen: () => void;
-  readonly handleSendMessage: (text: string, isQuickReply?: boolean) => Promise<void>;
-  readonly handleSubmit: (e: React.FormEvent) => void;
-  readonly handleQuickReply: (reply: QuickReply) => void;
+  readonly handleToggle: () => void;
+  readonly handleClose: () => void;
   readonly handleInputChange: (value: string) => void;
-  readonly messagesEndRef: React.RefObject<HTMLDivElement | null>;
+  readonly handleSendMessage: () => void;
+  readonly handleQuickReply: (reply: QuickReply) => void;
 }
