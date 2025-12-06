@@ -1,4 +1,4 @@
-import { Hero } from '@/components/sections/Hero';
+import { Hero } from '@/components/hero';
 import { AboutUs } from '@/components/sections/AboutUs';
 import { AboutUsSwiss } from '@/components/sections/AboutUsSwiss';
 import { WhyUs } from '@/components/sections/WhyUs';
@@ -8,7 +8,7 @@ import { ContactCTA } from '@/components/sections/ContactCTA';
 import { Chatbot } from '@/components/chatbot';
 
 // Swiss Design System Feature Flag
-// Set to true to enable Swiss-compliant AboutUs section
+// Set to true to enable Swiss-compliant sections
 const USE_SWISS_DESIGN = true;
 
 export default function Home() {
