@@ -29,16 +29,9 @@ interface MenuFooterProps {
   readonly linkText: string;
 }
 
-export const MenuFooter = memo<MenuFooterProps>(function MenuFooter({
-  text,
-  href,
-  linkText,
-}) {
+export const MenuFooter = memo<MenuFooterProps>(function MenuFooter({ text, href, linkText }) {
   return (
-    <motion.div
-      className={MENU_FOOTER_CLASSES.container}
-      variants={MENU_ITEM_VARIANTS}
-    >
+    <motion.div className={MENU_FOOTER_CLASSES.container} variants={MENU_ITEM_VARIANTS}>
       <span className={MENU_FOOTER_CLASSES.text}>{text}</span>
       <Link href={href} className={MENU_FOOTER_CLASSES.link}>
         {linkText}

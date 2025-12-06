@@ -39,16 +39,16 @@ const DefaultIcon = memo(function DefaultIcon() {
   return (
     <svg
       className={MENU_ITEM_CLASSES.icon}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      aria-hidden="true"
+      fill='none'
+      viewBox='0 0 24 24'
+      stroke='currentColor'
+      aria-hidden='true'
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeLinecap='round'
+        strokeLinejoin='round'
         strokeWidth={1.5}
-        d="M13 10V3L4 14h7v7l9-11h-7z"
+        d='M13 10V3L4 14h7v7l9-11h-7z'
       />
     </svg>
   );
@@ -56,74 +56,72 @@ const DefaultIcon = memo(function DefaultIcon() {
 
 DefaultIcon.displayName = 'DefaultIcon';
 
-export const MenuItem = memo<MenuItemProps & { isFocused?: boolean }>(
-  function MenuItem({ item, index, isFocused = false }) {
-    const linkRef = useRef<HTMLAnchorElement>(null);
+export const MenuItem = memo<MenuItemProps & { isFocused?: boolean }>(function MenuItem({
+  item,
+  index: _index,
+  isFocused = false,
+}) {
+  const linkRef = useRef<HTMLAnchorElement>(null);
 
-    // Focus management for keyboard navigation
-    useEffect(() => {
-      if (isFocused && linkRef.current) {
-        linkRef.current.focus();
-      }
-    }, [isFocused]);
+  // Focus management for keyboard navigation
+  useEffect(() => {
+    if (isFocused && linkRef.current) {
+      linkRef.current.focus();
+    }
+  }, [isFocused]);
 
-    const Icon = item.icon;
+  const Icon = item.icon;
 
-    return (
-      <motion.div variants={MENU_ITEM_VARIANTS}>
-        <Link
-          ref={linkRef}
-          href={item.href}
-          className={cn(
-            MENU_ITEM_CLASSES.base,
-            MENU_ITEM_CLASSES.hover,
-            MENU_ITEM_CLASSES.focus,
-            MENU_ITEM_CLASSES.active
-          )}
-          role="menuitem"
-          tabIndex={isFocused ? 0 : -1}
-          target={item.isExternal ? '_blank' : undefined}
-          rel={item.isExternal ? 'noopener noreferrer' : undefined}
-        >
-          {/* Icon Container */}
-          <div className={MENU_ITEM_CLASSES.iconContainer}>
-            {Icon ? (
-              <Icon className={MENU_ITEM_CLASSES.icon} aria-hidden="true" />
-            ) : (
-              <DefaultIcon />
-            )}
+  return (
+    <motion.div variants={MENU_ITEM_VARIANTS}>
+      <Link
+        ref={linkRef}
+        href={item.href}
+        className={cn(
+          MENU_ITEM_CLASSES.base,
+          MENU_ITEM_CLASSES.hover,
+          MENU_ITEM_CLASSES.focus,
+          MENU_ITEM_CLASSES.active
+        )}
+        role='menuitem'
+        tabIndex={isFocused ? 0 : -1}
+        target={item.isExternal ? '_blank' : undefined}
+        rel={item.isExternal ? 'noopener noreferrer' : undefined}
+      >
+        {/* Icon Container */}
+        <div className={MENU_ITEM_CLASSES.iconContainer}>
+          {Icon ? <Icon className={MENU_ITEM_CLASSES.icon} aria-hidden='true' /> : <DefaultIcon />}
+        </div>
+
+        {/* Text Content */}
+        <div className={MENU_ITEM_CLASSES.textContainer}>
+          <div className={MENU_ITEM_CLASSES.titleRow}>
+            <span className={MENU_ITEM_CLASSES.title}>{item.title}</span>
+            {item.badge && <MenuBadge badge={item.badge} />}
           </div>
+          <p className={MENU_ITEM_CLASSES.description}>{item.description}</p>
+        </div>
 
-          {/* Text Content */}
-          <div className={MENU_ITEM_CLASSES.textContainer}>
-            <div className={MENU_ITEM_CLASSES.titleRow}>
-              <span className={MENU_ITEM_CLASSES.title}>{item.title}</span>
-              {item.badge && <MenuBadge badge={item.badge} />}
-            </div>
-            <p className={MENU_ITEM_CLASSES.description}>{item.description}</p>
-          </div>
-
-          {/* External link indicator */}
-          {item.isExternal && (
-            <svg
-              className="w-4 h-4 text-gray-400 flex-shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          )}
-        </Link>
-      </motion.div>
-    );
-  }
-);
+        {/* External link indicator */}
+        {item.isExternal && (
+          <svg
+            className='w-4 h-4 text-gray-400 flex-shrink-0'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            aria-hidden='true'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+            />
+          </svg>
+        )}
+      </Link>
+    </motion.div>
+  );
+});
 
 MenuItem.displayName = 'MenuItem';

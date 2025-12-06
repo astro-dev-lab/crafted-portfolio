@@ -447,8 +447,7 @@ export const MENU_TRIGGER_CLASSES = {
   /** Transparent state colors */
   transparent: 'text-gray-200 hover:text-white',
   /** Chevron icon transition */
-  chevron:
-    'w-4 h-4 transition-transform duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]',
+  chevron: 'w-4 h-4 transition-transform duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]',
   chevronOpen: 'rotate-180',
 } as const;
 
@@ -456,8 +455,7 @@ export const MENU_SECTION_CLASSES = {
   /** Section container */
   container: 'py-4 first:pt-0 last:pb-0',
   /** Section title: S₂ padding, uppercase tracking */
-  title:
-    'px-6 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider',
+  title: 'px-6 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider',
   /** Items container */
   items: 'space-y-1',
 } as const;
@@ -467,8 +465,7 @@ export const MENU_ITEM_CLASSES = {
   base: 'group/item flex items-start gap-4 px-6 py-3 rounded-lg mx-2 transition-all duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] cursor-pointer',
   /** Hover and focus states */
   hover: 'hover:bg-gray-50',
-  focus:
-    'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset',
+  focus: 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset',
   /** Active/pressed state */
   active: 'active:bg-gray-100 active:scale-[0.99]',
   /** Icon container: S₅ = 40px */
@@ -481,8 +478,7 @@ export const MENU_ITEM_CLASSES = {
   /** Title row */
   titleRow: 'flex items-center gap-2',
   /** Item title */
-  title:
-    'font-medium text-gray-900 group-hover/item:text-gray-900 transition-colors duration-150',
+  title: 'font-medium text-gray-900 group-hover/item:text-gray-900 transition-colors duration-150',
   /** Item description */
   description: 'text-sm text-gray-500 mt-0.5 line-clamp-1',
 } as const;
@@ -499,8 +495,7 @@ export const MENU_BADGE_CLASSES = {
 
 export const MENU_FOOTER_CLASSES = {
   /** Footer container with top border */
-  container:
-    'px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between',
+  container: 'px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between',
   /** Footer text */
   text: 'text-sm text-gray-500',
   /** Footer link */
@@ -573,4 +568,3 @@ export const MENU_SECTION_VARIANTS = {
     },
   },
 } as const;
-

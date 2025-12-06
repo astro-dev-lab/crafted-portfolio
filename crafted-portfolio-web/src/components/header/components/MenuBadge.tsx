@@ -25,11 +25,7 @@ import type { MenuBadgeProps } from '../types';
 export const MenuBadge = memo<MenuBadgeProps>(function MenuBadge({ badge }) {
   const variantClass = MENU_BADGE_CLASSES[badge.variant];
 
-  return (
-    <span className={cn(MENU_BADGE_CLASSES.base, variantClass)}>
-      {badge.text}
-    </span>
-  );
+  return <span className={cn(MENU_BADGE_CLASSES.base, variantClass)}>{badge.text}</span>;
 });
 
 MenuBadge.displayName = 'MenuBadge';

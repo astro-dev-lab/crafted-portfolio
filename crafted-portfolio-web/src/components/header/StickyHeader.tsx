@@ -22,7 +22,7 @@ import { Container } from '@/components/ui/Container';
 import { cn } from '@/lib/utils';
 import { useScrollState } from './hooks/useScrollState';
 import { Logo, Navigation, ActionButtons } from './components';
-import { CASE_STUDIES, NAV_ITEMS, HEADER_CLASSES } from './constants';
+import { NAV_ITEMS, HEADER_CLASSES } from './constants';
 import type { StickyHeaderProps } from './types';
 
 export const StickyHeader = memo<StickyHeaderProps>(function StickyHeader({ className }) {
@@ -42,7 +42,7 @@ export const StickyHeader = memo<StickyHeaderProps>(function StickyHeader({ clas
         <div className='flex items-center justify-between py-4'>
           <Logo isScrolled={isScrolled} />
 
-          <Navigation isScrolled={isScrolled} caseStudies={CASE_STUDIES} navItems={NAV_ITEMS} />
+          <Navigation isScrolled={isScrolled} navItems={NAV_ITEMS} />
 
           <ActionButtons isScrolled={isScrolled} />
         </div>

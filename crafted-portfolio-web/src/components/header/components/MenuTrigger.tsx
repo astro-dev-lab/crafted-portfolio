@@ -40,29 +40,24 @@ export const MenuTrigger = memo(
     return (
       <button
         ref={ref}
-        type="button"
+        type='button'
         className={triggerClasses}
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         aria-expanded={isOpen}
-        aria-haspopup="menu"
+        aria-haspopup='menu'
         aria-label={`${label} menu`}
       >
         <span>{label}</span>
         <svg
           className={chevronClasses}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
+          aria-hidden='true'
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
         </svg>
       </button>
     );

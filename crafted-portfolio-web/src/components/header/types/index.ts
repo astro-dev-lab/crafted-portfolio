@@ -163,7 +163,6 @@ export interface GetStartedCTAProps {
 
 export interface NavigationProps {
   readonly isScrolled: boolean;
-  readonly caseStudies: readonly CaseStudy[];
   readonly navItems: readonly NavItem[];
 }
 

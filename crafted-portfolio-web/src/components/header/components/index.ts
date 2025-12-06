@@ -6,10 +6,21 @@
  * @module header/components
  */
 
+// Core components
 export { Logo } from './Logo';
 export { NavLink } from './NavLink';
-export { CaseStudiesDropdown } from './CaseStudiesDropdown';
 export { Navigation } from './Navigation';
+export { ActionButtons } from './ActionButtons';
 export { SignInButton } from './SignInButton';
 export { GetStartedCTA } from './GetStartedCTA';
-export { ActionButtons } from './ActionButtons';
+
+// Mega menu components
+export { MegaMenuDropdown } from './MegaMenuDropdown';
+export { MenuTrigger } from './MenuTrigger';
+export { MenuItem } from './MenuItem';
+export { MenuSection } from './MenuSection';
+export { MenuBadge } from './MenuBadge';
+export { MenuFooter } from './MenuFooter';
+
+// Legacy (deprecated - use MegaMenuDropdown instead)
+export { CaseStudiesDropdown } from './CaseStudiesDropdown';

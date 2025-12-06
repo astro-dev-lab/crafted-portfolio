@@ -30,19 +30,14 @@ import { MenuItem } from './MenuItem';
 import type { MenuSectionProps } from '../types';
 
 export const MenuSection = memo<MenuSectionProps & { focusedItemId?: string }>(
-  function MenuSection({ section, sectionIndex, focusedItemId }) {
+  function MenuSection({ section, sectionIndex: _sectionIndex, focusedItemId }) {
     return (
-      <motion.div
-        className={MENU_SECTION_CLASSES.container}
-        variants={MENU_SECTION_VARIANTS}
-      >
+      <motion.div className={MENU_SECTION_CLASSES.container} variants={MENU_SECTION_VARIANTS}>
         {/* Section Title (optional) */}
-        {section.title && (
-          <h3 className={MENU_SECTION_CLASSES.title}>{section.title}</h3>
-        )}
+        {section.title && <h3 className={MENU_SECTION_CLASSES.title}>{section.title}</h3>}
 
         {/* Section Items */}
-        <div className={MENU_SECTION_CLASSES.items} role="group">
+        <div className={MENU_SECTION_CLASSES.items} role='group'>
           {section.items.map((item, itemIndex) => (
             <MenuItem
               key={item.id}
